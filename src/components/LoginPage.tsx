@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Receipt } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";

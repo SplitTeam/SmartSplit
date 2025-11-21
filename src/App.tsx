@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as React from "react";
 import { LoginPage } from "./components/LoginPage";
 import { Sidebar } from "./components/Sidebar";
 import { Navbar } from "./components/Navbar";
@@ -43,10 +44,10 @@ export default function App() {
     <TooltipProvider>
       <div className="flex h-screen bg-[rgb(10,10,15)]">
         <Sidebar currentPage={currentPage} onNavigate={handleNavigate} />
-        
+
         <div className="flex-1 flex flex-col overflow-hidden">
           <Navbar />
-          
+
           <main className="flex-1 overflow-y-auto">
             {currentPage === "dashboard" && <Dashboard onNavigate={handleNavigate} />}
             {currentPage === "analytics" && <AnalyticsPage />}
@@ -69,13 +70,13 @@ export default function App() {
             )}
           </main>
         </div>
-        
+
         {/* Floating Action Button */}
         <Tooltip>
           <TooltipTrigger asChild>
             <button
               onClick={() => setIsAddExpenseOpen(true)}
-              className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-gradient-to-r from-[#4A8BFF] to-[#1A2A6C] text-white shadow-2xl hover:shadow-[0_0_40px_rgba(74,139,255,0.6)] transition-all duration-300 hover:scale-110 flex items-center justify-center z-50 glow-blue"
+              className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-linear-to-r from-[#4A8BFF] to-[#1A2A6C] text-white shadow-2xl hover:shadow-[0_0_40px_rgba(74,139,255,0.6)] transition-all duration-300 hover:scale-110 flex items-center justify-center z-50 glow-blue"
             >
               <Plus className="w-7 h-7" />
             </button>
@@ -84,7 +85,7 @@ export default function App() {
             <p>Add New Expense</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <AddExpenseModal
           open={isAddExpenseOpen}
           onClose={() => setIsAddExpenseOpen(false)}
