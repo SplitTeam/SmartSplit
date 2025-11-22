@@ -132,61 +132,46 @@ p {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(74, 139, 255, 0.2);
 }
 
-/* Custom animated cursor styles */
-body.custom-cursor-enabled {
-  cursor: none !important; /* hide native cursor when enabled */
+/* Use only PNG cursor assets from public/ as requested. Place your files at:
+   public/cursor.png and public/pointer.png
+   Hotspot numbers are pixels (x y) from the top-left of the image.
+*/
+
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
+  /* Default cursor — hotspot at 6 6 (good for ~12x12 images). Change to
+     8 8 for 16x16, etc., after you resize the PNGs. */
+  cursor: url('/cursor.png') 6 6, auto !important;
 }
 
-.custom-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 44px;
-  height: 44px;
-  transform: translate3d(-50%, -50%, 0);
-  pointer-events: none;
-  z-index: 9999;
-  will-change: transform, opacity;
-  transition: opacity 180ms ease, transform 180ms ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* interactive elements (links, buttons) use the pointer PNG */
+body.custom-cursor-enabled a,
+body.custom-cursor-enabled button,
+body.custom-cursor-enabled [role="button"],
+body.custom-cursor-enabled [data-cursor-hover] {
+  cursor: url('/pointer.png') 10 10, pointer !important;
 }
 
-.custom-cursor-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 9999px;
-  background: rgba(74,139,255,1);
-  box-shadow: 0 4px 16px rgba(74,139,255,0.35);
+/* keep native caret/cursor for form controls */
+body.custom-cursor-enabled input,
+body.custom-cursor-enabled textarea,
+body.custom-cursor-enabled select {
+  cursor: auto !important;
 }
 
-.custom-cursor-ring {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 9999px;
-  border: 2px solid rgba(74,139,255,0.12);
-  transition: width 160ms ease, height 160ms ease, border-color 160ms ease, transform 160ms ease;
-}
-
-.custom-cursor.hovered .custom-cursor-ring {
-  width: 56px;
-  height: 56px;
-  border-color: rgba(74,139,255,0.28);
-  transform: scale(1.02);
-}
-
-.custom-cursor.hovered .custom-cursor-dot {
-  transform: scale(1.15);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .custom-cursor, .custom-cursor-ring, .custom-cursor-dot { transition: none !important; }
+/* Show pointer for checkboxes and radio buttons so users get expected
+   clickable affordance when interacting with them. This rule is more
+   specific than the generic form-control rule above and uses !important
+   to override it when the custom cursor is enabled. */
+body.custom-cursor-enabled input[type="checkbox"],
+body.custom-cursor-enabled input[type="radio"] {
+  cursor: url('/pointer.png') 10 10, pointer !important;
 }
 
 @media (hover: none) {
-  /* hide custom cursor on touch devices */
-  body.custom-cursor-enabled .custom-cursor { display: none; }
-  body.custom-cursor-enabled { cursor: auto !important; }
+  /* On touch devices fall back to native behavior */
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled * {
+    cursor: auto !important;
+  }
 }
