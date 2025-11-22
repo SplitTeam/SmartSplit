@@ -11,7 +11,11 @@ import {
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 
-export function Navbar() {
+type NavbarProps = {
+  onLogout?: () => void;
+};
+
+export function Navbar({ onLogout }: NavbarProps) {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const notificationCount = 3;
 
@@ -79,7 +83,12 @@ export function Navbar() {
               <span>Settings</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-[rgb(39,39,55)]" />
-            <DropdownMenuItem className="focus:bg-red-500/10 focus:text-red-400 cursor-pointer">
+            <DropdownMenuItem
+              onClick={() => {
+                if (onLogout) onLogout();
+              }}
+              className="focus:bg-red-500/10 focus:text-red-400 cursor-pointer"
+            >
               <LogOut className="mr-2 h-4 w-4" />
               <span>Logout</span>
             </DropdownMenuItem>

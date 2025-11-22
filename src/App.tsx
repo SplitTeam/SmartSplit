@@ -55,6 +55,27 @@ export default function App() {
     setIsLoggedIn(true);
   };
 
+  const handleLogout = useCallback(() => {
+    // Clear any stored session (if applicable) and reset UI state
+    try {
+      // example: localStorage.removeItem('token'); // uncomment if you use tokens
+    } catch (e) {}
+
+    setIsLoggedIn(false);
+    setCurrentPage("dashboard");
+
+    try {
+      const baseRaw = (import.meta as any).env?.BASE_URL ?? "/";
+      let base = String(baseRaw);
+      if (!base.startsWith("/")) base = "/" + base;
+      if (!base.endsWith("/")) base = base + "/";
+      const newPath = `${base}dashboard`;
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, "", newPath);
+      }
+    } catch (e) {}
+  }, []);
+
   const handleNavigate = useCallback((page: string) => {
     // Update history and state. Respect BASE_URL so this works in dev and when deployed under
     // a subpath (e.g. GitHub Pages /SmartSplit/).
@@ -95,7 +116,7 @@ export default function App() {
         <Sidebar currentPage={currentPage} onNavigate={handleNavigate} />
 
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Navbar />
+          <Navbar onLogout={handleLogout} />
 
           <main className="flex-1 overflow-y-auto">
             {currentPage === "dashboard" && <Dashboard onNavigate={handleNavigate} />}
