@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as React from "react";
 import { LoginPage } from "./components/LoginPage";
 import { Sidebar } from "./components/Sidebar";
@@ -23,18 +23,67 @@ import {
   TooltipTrigger,
 } from "./components/ui/tooltip";
 
+function getPageFromPath(): string {
+  // Derive the current page slug from the window location, removing the Vite base if present.
+  try {
+    const baseRaw = (import.meta as any).env?.BASE_URL ?? "/";
+    let base = String(baseRaw);
+    if (!base.startsWith("/")) base = "/" + base;
+    if (!base.endsWith("/")) base = base + "/";
+
+    let path = window.location.pathname || "/";
+
+    if (base !== "/" && path.startsWith(base)) {
+      path = path.slice(base.length);
+    } else if (path.startsWith("/")) {
+      path = path.slice(1);
+    }
+
+    const slug = path.split("/")[0];
+    return slug || "dashboard";
+  } catch (e) {
+    return "dashboard";
+  }
+}
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [currentPage, setCurrentPage] = useState<string>(() => getPageFromPath());
   const [isAddExpenseOpen, setIsAddExpenseOpen] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = useCallback((page: string) => {
+    // Update history and state. Respect BASE_URL so this works in dev and when deployed under
+    // a subpath (e.g. GitHub Pages /SmartSplit/).
+    try {
+      const baseRaw = (import.meta as any).env?.BASE_URL ?? "/";
+      let base = String(baseRaw);
+      if (!base.startsWith("/")) base = "/" + base;
+      if (!base.endsWith("/")) base = base + "/";
+
+      const newPath = `${base}${page}`;
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({}, "", newPath);
+      }
+    } catch (e) {
+      // ignore and just set state
+    }
+
     setCurrentPage(page);
-  };
+  }, []);
+
+  // Update page when user uses back/forward
+  useEffect(() => {
+    const onPop = () => {
+      setCurrentPage(getPageFromPath());
+    };
+
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   if (!isLoggedIn) {
     return <LoginPage onLogin={handleLogin} />;
