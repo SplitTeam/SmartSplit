@@ -1,0 +1,436 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "A:\\splitteam\\SmartSplit2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\Group View Page.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\dashboard-main-transparent.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\combined-screenshot.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\client\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\client\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\userRouter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\groupRouter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\expenseRouter.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\model\\schema.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\validation.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\split.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\requestLogger.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\logger.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\apiAuthentication.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\components\\user.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\components\\group.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\components\\expense.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\Procfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\dashboard-main-transparent.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\API_collection.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\desc\\SplitApp-main\\SplitApp-main\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Group View Page.jpg",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\Group View Page.jpg",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\Group View Page.jpg",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\Group View Page.jpg",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\Group View Page.jpg",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-17T16:23:45.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dashboard-main-transparent.png",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\dashboard-main-transparent.png",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\dashboard-main-transparent.png",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\dashboard-main-transparent.png",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\dashboard-main-transparent.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-17T16:23:43.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "combined-screenshot.png",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\combined-screenshot.png",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\combined-screenshot.png",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\combined-screenshot.png",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Screenshots\\combined-screenshot.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-17T16:23:40.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "README.md",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\README.md",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\README.md",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\README.md",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-12-17T16:23:38.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "package.json",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package.json",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\package.json",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package.json",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-17T16:23:38.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package-lock.json",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\package-lock.json",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\package-lock.json",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\package-lock.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-17T16:23:38.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": ".gitignore",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\.gitignore",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\.gitignore",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\client\\.gitignore",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\client\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T16:23:38.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "userRouter.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\userRouter.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\userRouter.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\userRouter.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\userRouter.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "groupRouter.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\groupRouter.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\groupRouter.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\groupRouter.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\groupRouter.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "expenseRouter.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\expenseRouter.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\expenseRouter.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\routes\\expenseRouter.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\routes\\expenseRouter.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "schema.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\model\\schema.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\model\\schema.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\model\\schema.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\model\\schema.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "validation.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\validation.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\validation.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\validation.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\validation.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "split.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\split.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\split.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\split.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\split.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "requestLogger.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\requestLogger.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\requestLogger.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\requestLogger.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\requestLogger.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "logger.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\logger.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\logger.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\logger.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\logger.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "apiAuthentication.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\apiAuthentication.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\apiAuthentication.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\helper\\apiAuthentication.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\helper\\apiAuthentication.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:37.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "user.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\user.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\user.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\user.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\user.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:36.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "group.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\group.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\group.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\group.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\group.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:36.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "expense.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\expense.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\expense.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\components\\expense.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\components\\expense.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:36.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Procfile",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\Procfile",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Procfile",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\Procfile",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\Procfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T16:23:36.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\package-lock.json",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\package-lock.json",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\package-lock.json",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\package-lock.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-17T16:23:36.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "package.json",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\package.json",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\package.json",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\package.json",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-17T16:23:36.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "dashboard-main-transparent.png",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\dashboard-main-transparent.png",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\dashboard-main-transparent.png",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\dashboard-main-transparent.png",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\dashboard-main-transparent.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-12-17T16:23:34.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "app.js",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\app.js",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\app.js",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\app.js",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\app.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-12-17T16:23:29.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "API_collection.json",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\API_collection.json",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\API_collection.json",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\API_collection.json",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\API_collection.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-17T16:23:29.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": ".gitignore",
+              "DocumentMoniker": "A:\\desc\\SplitApp-main\\SplitApp-main\\.gitignore",
+              "RelativeDocumentMoniker": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\.gitignore",
+              "ToolTip": "A:\\desc\\SplitApp-main\\SplitApp-main\\.gitignore",
+              "RelativeToolTip": "..\\..\\desc\\SplitApp-main\\SplitApp-main\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T16:23:28.941Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
