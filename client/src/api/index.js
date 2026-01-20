@@ -1,16 +1,14 @@
 import axios from 'axios'
 
-
-//const API = axios.create({ baseURL: 'http://localhost:3001'})
-const API = axios.create({ baseURL: 'https://emotional-cherilyn-smartsplit-886ff7be.koyeb.app'})
+const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL })
 
 const profile = JSON.parse(localStorage.getItem('profile'))
 
 const accessHeader = {
     headers: {
-      'Authorization': `token ${profile ? profile.accessToken : null}`
+        'Authorization': `token ${profile ? profile.accessToken : null}`
     }
-  }
+}
 
 export const loginIn = (formData) => API.post('/api/users/v1/login', formData)
 

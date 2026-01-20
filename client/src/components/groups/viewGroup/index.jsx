@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, Fab, Grid, Link, Stack, styled, Typography } from '@mui/material';
+﻿import { Box, Button, Container, Divider, Fab, Grid, Link, Stack, styled, Typography, Avatar } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getGroupDetailsService, getGroupExpenseService } from '../../../services/groupServices';
@@ -98,7 +98,36 @@ export default function ViewGroup() {
         height: 60,
 
 
-    }))
+    }));
+
+    function getMyBalanceDetails(splitObj, myEmail) {
+        // splitObj: { user1@email: sum, user2@email: sum, ... }
+        // myEmail: email-ul utilizatorului curent
+        if (!splitObj || !myEmail) return { toCollect: 0, toPay: 0, priorities: [] };
+
+        let toCollect = 0;
+        let toPay = 0;
+        let priorities = [];
+
+        // Pentru fiecare user, dacă nu ești tu, vezi cât ai de primit sau de dat
+        Object.entries(splitObj[0] || {}).forEach(([email, amount]) => {
+            if (email === myEmail) return;
+            if (amount < 0) {
+                toPay += Math.abs(amount);
+                priorities.push({ email, amount: Math.abs(amount), type: 'pay' });
+            } else if (amount > 0) {
+                toCollect += amount;
+                priorities.push({ email, amount, type: 'collect' });
+            }
+        });
+
+        // Sortează prioritățile descrescător după sumă
+        priorities.sort((a, b) => b.amount - a.amount);
+
+        return { toCollect, toPay, priorities };
+    }
+
+
     return (
 
         <Container>
@@ -360,10 +389,111 @@ export default function ViewGroup() {
                                 ...(mdUp && { px: 6 })
                             }}
                         >
-                            {viewSettlement == 2 && 
-                            <Typography>
-                                My Balance - Under development 
-                            </Typography>
+                            {viewSettlement == 2 &&
+                                <Grid item xs={12} md={12}>
+                                    {/* Quick Glance Carduri */}
+                                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} mb={3}>
+                                        {(() => {
+                                            const { toCollect, toPay, priorities } = getMyBalanceDetails(group?.split, emailId);
+                                            return (
+                                                <>
+                                                    <Stack
+                                                        direction="row"
+                                                        alignItems="center"
+                                                        spacing={2}
+                                                        sx={{
+                                                            bgcolor: (theme) => theme.palette.success.lighter,
+                                                            borderRadius: 2,
+                                                            p: 2,
+                                                            minWidth: 220,
+                                                            flex: 1,
+                                                        }}
+                                                    >
+                                                        <LabelIconStyle sx={{ bgcolor: (theme) => theme.palette.success.dark, py: '18px' }}>
+                                                            <Iconify icon="mdi:cash-plus" sx={{ width: '100%', height: '100%', color: 'white' }} />
+                                                        </LabelIconStyle>
+                                                        <Box>
+                                                            <Typography variant="subtitle2" color="success.dark">
+                                                                To Collect
+                                                            </Typography>
+                                                            <Typography variant="h6" color="success.darker">
+                                                                {currencyFind(group?.groupCurrency)} {convertToCurrency(toCollect)}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Stack>
+                                                    <Stack
+                                                        direction="row"
+                                                        alignItems="center"
+                                                        spacing={2}
+                                                        sx={{
+                                                            bgcolor: (theme) => theme.palette.error.lighter,
+                                                            borderRadius: 2,
+                                                            p: 2,
+                                                            minWidth: 220,
+                                                            flex: 1,
+                                                        }}
+                                                    >
+                                                        <LabelIconStyle sx={{ bgcolor: (theme) => theme.palette.error.dark, py: '18px' }}>
+                                                            <Iconify icon="mdi:cash-minus" sx={{ width: '100%', height: '100%', color: 'white' }} />
+                                                        </LabelIconStyle>
+                                                        <Box>
+                                                            <Typography variant="subtitle2" color="error.dark">
+                                                                To Pay
+                                                            </Typography>
+                                                            <Typography variant="h6" color="error.darker">
+                                                                {currencyFind(group?.groupCurrency)} {convertToCurrency(toPay)}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Stack>
+                                                </>
+                                            );
+                                        })()}
+                                    </Stack>
+                                    {/* Lista de priorități */}
+                                    <Box sx={{ mt: 2 }}>
+                                        <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 600 }}>
+                                            Priority List
+                                        </Typography>
+                                        <Stack spacing={1}>
+                                            {(() => {
+                                                const { priorities } = getMyBalanceDetails(group?.split, emailId);
+                                                if (!priorities.length) {
+                                                    return <Typography variant="body2" color="text.secondary">No outstanding balances.</Typography>;
+                                                }
+                                                return priorities.map((item, idx) => (
+                                                    <Stack
+                                                        key={item.email}
+                                                        direction="row"
+                                                        alignItems="center"
+                                                        spacing={2}
+                                                        sx={{
+                                                            bgcolor: item.type === 'collect'
+                                                                ? (theme) => theme.palette.success.lighter
+                                                                : (theme) => theme.palette.error.lighter,
+                                                            borderRadius: 1,
+                                                            p: 1.5,
+                                                        }}
+                                                    >
+                                                        <Avatar sx={{ width: 32, height: 32, bgcolor: item.type === 'collect' ? 'success.main' : 'error.main' }}>
+                                                            {item.email[0]?.toUpperCase()}
+                                                        </Avatar>
+                                                        <Box flex={1}>
+                                                            <Typography variant="body1" fontWeight={500}>
+                                                                {item.email}
+                                                            </Typography>
+                                                            <Typography variant="caption" color="text.secondary">
+                                                                {item.type === 'collect' ? 'To Collect' : 'To Pay'}
+                                                            </Typography>
+                                                        </Box>
+                                                        <Typography variant="body1" fontWeight={700}>
+                                                            {currencyFind(group?.groupCurrency)} {convertToCurrency(item.amount)}
+                                                        </Typography>
+                                                    </Stack>
+                                                ));
+                                            })()}
+                                        </Stack>
+                                    </Box>
+                                </Grid>
                             }
                             {viewSettlement === 1 &&
                                 <Grid item md={12} xs={12}>
