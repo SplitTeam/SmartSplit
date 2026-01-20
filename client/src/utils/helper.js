@@ -1,4 +1,5 @@
 
+
 // ----------------------------------------------------------------------
 
 
@@ -19,6 +20,51 @@ export function currencyFind(currencyType){
           return 'lei'
   }
 }
+
+/**
+ * Format currency breakdown for display
+ * @param {Object} breakdown - Breakdown object with currencies and amounts
+ * @returns {String} - Formatted string like "100 lei RON, 50 $ USD"
+ */
+export function formatCurrencyBreakdown(breakdown) {
+  if (!breakdown || Object.keys(breakdown).length === 0) {
+    return '';
+  }
+  
+  return Object.entries(breakdown)
+    .map(([currency, amount]) => {
+      const symbol = currencyFind(currency);
+      const formattedAmount = convertToCurrency(amount);
+      return `${formattedAmount} ${symbol} ${currency}`;
+    })
+    .join(', ');
+}
+
+/**
+ * Format total with currency conversion info
+ * @param {Number} total - Total amount
+ * @param {String} currency - Currency code
+ * @param {Object} breakdown - Original amounts by currency
+ * @returns {Object} - Formatted display strings
+ */
+export function formatTotalWithConversion(total, currency, breakdown) {
+  const symbol = currencyFind(currency);
+  const formattedTotal = convertToCurrency(total);
+  const breakdownText = formatCurrencyBreakdown(breakdown);
+  
+  // Check if conversion happened (more than one currency in breakdown)
+  const hasConversion = breakdown && Object.keys(breakdown).length > 1;
+  
+  return {
+    mainTotal: `${formattedTotal} ${symbol} ${currency}`,
+    breakdown: breakdownText,
+    hasConversion: hasConversion,
+    tooltip: hasConversion 
+      ? `Original amounts: ${breakdownText}. Converted to ${currency} using approximate exchange rates.`
+      : null
+  };
+}
+
 
 
 export function categoryIcon(groupCategory){

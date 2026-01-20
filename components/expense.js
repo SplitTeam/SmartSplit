@@ -2,6 +2,7 @@ const model = require('../model/schema')
 const validator = require('../helper/validation');
 const logger = require('../helper/logger');
 const gorupDAO = require('./group')
+const currencyConverter = require('../helper/currencyConverter');
 
 /*
 Add Expense function
@@ -283,14 +284,24 @@ exports.viewGroupExpense = async (req, res) => {
             err.status = 400
             throw err
         }
-        var totalAmount = 0
-        for (var expense of groupExpense) {
-            totalAmount += expense['expenseAmount']
-        }
+        
+        // Calculate total with currency conversion
+        const baseCurrency = group.groupCurrency || 'RON'
+        const totalCalculation = currencyConverter.calculateTotalWithConversion(
+            groupExpense.map(exp => ({
+                amount: exp.expenseAmount,
+                currency: exp.expenseCurrency
+            })),
+            baseCurrency
+        )
+        
         res.status(200).json({
             status: "Success",
             expense: groupExpense,
-            total: totalAmount
+            total: totalCalculation.total,
+            currency: totalCalculation.currency,
+            breakdown: totalCalculation.breakdown,
+            conversionNote: totalCalculation.conversionNote
         })
     } catch (err) {
         logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
@@ -329,14 +340,24 @@ try {
             err.status = 400
             throw err
         }
-        var totalAmount = 0
-        for (var expense of userExpense) {
-            totalAmount += expense['expensePerMember']
-        }
+        
+        // Calculate total with currency conversion (user pays per member share)
+        const baseCurrency = 'RON' // Default base currency for user totals
+        const totalCalculation = currencyConverter.calculateTotalWithConversion(
+            userExpense.map(exp => ({
+                amount: exp.expensePerMember,
+                currency: exp.expenseCurrency
+            })),
+            baseCurrency
+        )
+        
         res.status(200).json({
             status: "Success",
             expense: userExpense,
-            total: totalAmount
+            total: totalCalculation.total,
+            currency: totalCalculation.currency,
+            breakdown: totalCalculation.breakdown,
+            conversionNote: totalCalculation.conversionNote
         })
 
     } catch (err) {
