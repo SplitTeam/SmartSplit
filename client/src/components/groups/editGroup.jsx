@@ -1,12 +1,12 @@
 import { LoadingButton } from '@mui/lab';
-import { Box, Button, Chip, Container, FormControl, FormHelperText, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography } from '@mui/material'
+import { Box, Button, Chip, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormHelperText, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography } from '@mui/material'
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { getEmailList } from '../../services/auth';
 import Loading from '../loading';
 import useResponsive from '../../theme/hooks/useResponsive';
-import {  editGroupService, getGroupDetailsService } from '../../services/groupServices';
+import {  deleteGroupService, editGroupService, getGroupDetailsService } from '../../services/groupServices';
 import AlertBanner from '../AlertBanner';
 import configData from '../../config.json'
 import {  useNavigate, useParams } from 'react-router-dom';
@@ -22,6 +22,8 @@ export const EditGroup = () => {
     const [emailList, setEmailList] = useState([]);
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [deleting, setDeleting] = useState(false);
 
 
     //Formink schema 
@@ -90,6 +92,29 @@ export const EditGroup = () => {
 
 
     }, []);
+
+    const handleDeleteGroup = async () => {
+        setDeleting(true);
+        const deleteData = { id: params.groupId };
+        const delete_response = await deleteGroupService(deleteData, setAlert, setAlertMessage);
+        
+        if (delete_response) {
+            // Successfully deleted, redirect to groups page
+            window.location = configData.USER_GROUPS_URL;
+        } else {
+            // Error occurred, close dialog and show error
+            setOpenDeleteDialog(false);
+            setDeleting(false);
+        }
+    };
+
+    const handleOpenDeleteDialog = () => {
+        setOpenDeleteDialog(true);
+    };
+
+    const handleCloseDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+    };
 
     return (
         <Container>
@@ -201,7 +226,23 @@ export const EditGroup = () => {
                                     </FormControl>
                                 </Grid>
 
-                                {mdUp && <Grid item xs={0} md={6} />}
+                                {/* Delete Group Button - Full width on mobile, left aligned on desktop */}
+                                <Grid item xs={12} md={6}>
+                                    <Button 
+                                        fullWidth={!mdUp} 
+                                        size="large" 
+                                        variant="outlined" 
+                                        color="error"
+                                        onClick={handleOpenDeleteDialog}
+                                    >
+                                        Delete Group
+                                    </Button>
+                                </Grid>
+
+                                {/* Spacer for desktop layout */}
+                                {mdUp && <Grid item xs={0} md={3} />}
+                                
+                                {/* Cancel and Save buttons */}
                                 <Grid item xs={6} md={3}>
                                     <Button fullWidth size="large" variant="outlined" onClick={() => navigate(-1)}>
                                         Cancel
@@ -215,6 +256,37 @@ export const EditGroup = () => {
                             </Grid>
                         </Form>
                     </FormikProvider>
+
+                    {/* Delete Confirmation Dialog */}
+                    <Dialog
+                        open={openDeleteDialog}
+                        onClose={handleCloseDeleteDialog}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">
+                            {"Delete Group?"}
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Are you sure you want to delete this group? This action cannot be undone. 
+                                All expenses and settlements associated with this group will be permanently deleted.
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleCloseDeleteDialog} disabled={deleting}>
+                                Cancel
+                            </Button>
+                            <LoadingButton 
+                                onClick={handleDeleteGroup} 
+                                color="error" 
+                                autoFocus
+                                loading={deleting}
+                            >
+                                Delete
+                            </LoadingButton>
+                        </DialogActions>
+                    </Dialog>
                 </>
             }
         </Container>
