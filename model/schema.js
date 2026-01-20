@@ -47,7 +47,7 @@ const Group = new mongoose.Schema({
     },
     groupCurrency: {
         type: String,
-        default: "INR"
+        default: "RON"
     },
     groupOwner: {
         type: String,
@@ -91,7 +91,7 @@ const Expense = new mongoose.Schema({
     },
     expenseCurrency:{
         type: String,
-        default: "INR"
+        default: "RON"
     },
     expenseDate:{
         type: Date,

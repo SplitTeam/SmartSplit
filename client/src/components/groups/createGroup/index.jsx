@@ -32,7 +32,7 @@ export default function Creategroup() {
         initialValues: {
             groupName: '',
             groupDescription: '',
-            groupCurrency: '',
+            groupCurrency: 'RON',
             groupCategory: '',
             groupMembers: [currentUser],
             groupOwner: currentUser
@@ -154,7 +154,7 @@ export default function Creategroup() {
                                             label="Currency"
                                             {...getFieldProps('groupCurrency')}
                                         >
-                                            <MenuItem value={'INR'}>₹ INR</MenuItem>
+                                            <MenuItem value={'RON'}>lei RON</MenuItem>
                                             <MenuItem value={'USD'}>$ USD</MenuItem>
                                             <MenuItem value={'EUR'}>€ EUR</MenuItem>
                                         </Select>

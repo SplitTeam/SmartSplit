@@ -170,9 +170,9 @@ export const EditGroup = () => {
                                             label="Currency"
                                             {...getFieldProps('groupCurrency')}
                                         >
+                                            <MenuItem value={'RON'}>lei RON</MenuItem>
                                             <MenuItem value={'USD'}>$ USD</MenuItem>
                                             <MenuItem value={'EUR'}>€ EUR</MenuItem>
-                                            <MenuItem value={'RON'}>RON</MenuItem>
                                         </Select>
                                         <FormHelperText>{touched.groupCurrency && errors.groupCurrency}</FormHelperText>
 
