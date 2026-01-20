@@ -88,7 +88,8 @@ exports.viewGroup = async (req, res) => {
         }
         
         // Security check: Ensure the authenticated user is a member of the group
-        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+        // Skip check if req.user is not set (dev mode)
+        if (req.user && req.user.emailId && !group.groupMembers.includes(req.user.emailId)) {
             var err = new Error('Access Denied: You are not a member of this group')
             err.status = 403
             throw err
@@ -113,15 +114,16 @@ Accepts: user email ID
 Validation: email Id present in DB
 */
 exports.findUserGroup = async (req, res) => {
-    try {
-        // Security check: Ensure the authenticated user matches the requested user
-        if (req.user && req.user.emailId !== req.body.emailId) {
-            var err = new Error("Access Denied: You can only view your own groups")
-            err.status = 403
-            throw err
-        }
+try {
+    // Security check: Ensure the authenticated user matches the requested user
+    // Skip check if req.user is not set (dev mode)
+    if (req.user && req.user.emailId && req.user.emailId !== req.body.emailId) {
+        var err = new Error("Access Denied: You can only view your own groups")
+        err.status = 403
+        throw err
+    }
         
-        const user = await model.User.findOne({
+    const user = await model.User.findOne({
             emailId: req.body.emailId
         })
         if (!user) {
@@ -164,7 +166,8 @@ exports.editGroup = async (req, res) => {
         }
         
         // Security check: Ensure the authenticated user is a member of the group
-        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+        // Skip check if req.user is not set (dev mode)
+        if (req.user && req.user.emailId && !group.groupMembers.includes(req.user.emailId)) {
             var err = new Error('Access Denied: You are not a member of this group')
             err.status = 403
             throw err
@@ -247,7 +250,8 @@ exports.deleteGroup = async (req, res) => {
         }
         
         // Security check: Only group owner can delete the group
-        if (req.user && group.groupOwner !== req.user.emailId) {
+        // Skip check if req.user is not set (dev mode)
+        if (req.user && req.user.emailId && group.groupOwner !== req.user.emailId) {
             var err = new Error('Access Denied: Only the group owner can delete the group')
             err.status = 403
             throw err
@@ -293,7 +297,8 @@ exports.makeSettlement = async(req, res) =>{
         }
         
         // Security check: Ensure the authenticated user is a member of the group
-        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+        // Skip check if req.user is not set (dev mode)
+        if (req.user && req.user.emailId && !group.groupMembers.includes(req.user.emailId)) {
             var err = new Error('Access Denied: You are not a member of this group')
             err.status = 403
             throw err
@@ -411,7 +416,8 @@ exports.groupBalanceSheet = async(req, res) =>{
         }
         
         // Security check: Ensure the authenticated user is a member of the group
-        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+        // Skip check if req.user is not set (dev mode)
+        if (req.user && req.user.emailId && !group.groupMembers.includes(req.user.emailId)) {
             var err = new Error('Access Denied: You are not a member of this group')
             err.status = 403
             throw err
@@ -434,22 +440,23 @@ Make Favourite
 This function if used to make a group favourite 
 */
 exports.makeFavourite = async(req, res) => {
-    try{
-        validator.notNull(req.body.user)
-        validator.notNull(req.body.groupId)
+try{
+    validator.notNull(req.body.user)
+    validator.notNull(req.body.groupId)
         
-        // Security check: Ensure the authenticated user matches the requested user
-        if (req.user && req.user.emailId !== req.body.user) {
-            var err = new Error("Access Denied: You can only modify your own favourites")
-            err.status = 403
-            throw err
-        }
+    // Security check: Ensure the authenticated user matches the requested user
+    // Skip check if req.user is not set (dev mode)
+    if (req.user && req.user.emailId && req.user.emailId !== req.body.user) {
+        var err = new Error("Access Denied: You can only modify your own favourites")
+        err.status = 403
+        throw err
+    }
         
-        const user = await model.User.findOne({
-            emailId: req.body.user
-        })
-        console.log(user)
-        if(!user){
+    const user = await model.User.findOne({
+        emailId: req.body.user
+    })
+    console.log(user)
+    if(!user){
             var err = new Error("User not presnt in the database")
             err.status = 400
             throw err
@@ -488,22 +495,23 @@ Remove Favourite
 This function if used to remove a group favourite 
 */
 exports.removeFavourite = async(req, res) => {
-    try{
-        validator.notNull(req.body.user)
-        validator.notNull(req.body.groupId)
+try{
+    validator.notNull(req.body.user)
+    validator.notNull(req.body.groupId)
         
-        // Security check: Ensure the authenticated user matches the requested user
-        if (req.user && req.user.emailId !== req.body.user) {
-            var err = new Error("Access Denied: You can only modify your own favourites")
-            err.status = 403
-            throw err
-        }
+    // Security check: Ensure the authenticated user matches the requested user
+    // Skip check if req.user is not set (dev mode)
+    if (req.user && req.user.emailId && req.user.emailId !== req.body.user) {
+        var err = new Error("Access Denied: You can only modify your own favourites")
+        err.status = 403
+        throw err
+    }
         
-        const user = await model.User.findOne({
-            emailId: req.body.user
-        })
-        console.log(user)
-        if(!user){
+    const user = await model.User.findOne({
+        emailId: req.body.user
+    })
+    console.log(user)
+    if(!user){
             var err = new Error("User not presnt in the database")
             err.status = 400
             throw err
