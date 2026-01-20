@@ -126,34 +126,33 @@ exports.viewUser = async (req, res) => {
     }
 }
 
+
 /*
 View All User EmailIs function 
 This function is to get all the user email Id 
 Accepts: none
-Returns: all user names (firstName + lastName) and emailId for internal use
+Returns: all user Email ID
 */
 exports.emailList = async (req, res) => {
     try {
-        // Return firstName, lastName, and emailId for all users
-        const users = await model.User.find({}, {
-            firstName: 1,
-            lastName: 1,
+        //check if the login user is same as the requested user 
+        const userEmails = await model.User.find({
+        }, {
             emailId: 1,
             _id: 0
         })
-        if(!users) {
+        if(!userEmails) {
             var err = new Error("User does not exist!")
             err.status = 400
             throw err
         }
-        // Map to { name, emailId }
-        const userList = users.map(u => ({
-            name: `${u.firstName} ${u.lastName}`,
-            emailId: u.emailId
-        }))
+        var emailList = [] 
+        for(var email of userEmails){
+            emailList.push(email.emailId)
+        }
         res.status(200).json({
             status: "Success",
-            users: userList
+            user: emailList
         })
     } catch(err) {
         logger.error(`URL : ${req.originalUrl} | staus : ${err.status} | message: ${err.message}`)
@@ -162,6 +161,7 @@ exports.emailList = async (req, res) => {
         })
     }
 }
+
 
 /*
 Delete User function 

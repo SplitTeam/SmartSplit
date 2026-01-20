@@ -30,7 +30,7 @@ export default function ViewGroup() {
     const [expFocus, setExpFocus] = useState(false);
     const [expenses, setExpenses] = useState()
     const [viewSettlement, setViewSettlement] = useState(0)
-    const [userList, setUserList] = useState([]); // Adăugat pentru a stoca lista de utilizatori
+
 
     const toggleAllExp = () => {
         setExpenses(groupExpense?.expense?.slice(0, showCount))
@@ -127,11 +127,6 @@ export default function ViewGroup() {
         return { toCollect, toPay, priorities };
     }
 
-    // Funcție pentru a obține numele membrului pe baza emailului
-    const getMemberName = (emailId) => {
-        const user = userList.find(u => u.emailId === emailId)
-        return user ? user.name : emailId
-    }
 
     return (
 

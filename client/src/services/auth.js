@@ -100,13 +100,3 @@ export const editUser = async (formData, setShowAlert, setAlertMessage, showHome
         return false
     }
 }
-
-export const getUserList = async () => {
-    try{
-        const { data } = await api.getEmailList()
-        // data.users: [{ name, emailId }]
-        return data.users
-    }catch(err){
-        return null 
-    }
-}
