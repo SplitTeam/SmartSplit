@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 //const API = axios.create({ baseURL: 'http://localhost:3001'})
-const API = axios.create({ baseURL: 'https://emotional-cherilyn-smartsplit-886ff7be.koyeb.app/'})
+const API = axios.create({ baseURL: 'https://emotional-cherilyn-smartsplit-886ff7be.koyeb.app'})
 
 const profile = JSON.parse(localStorage.getItem('profile'))
 
