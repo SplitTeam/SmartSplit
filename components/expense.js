@@ -15,21 +15,29 @@ Accepts: Group ID not null group ID exist in the DB
 */
 
 exports.addExpense = async (req, res) => {
-    try {
-        var expense = req.body;
-        var group = await model.Group.findOne({
-            _id: expense.groupId
-        })
-        if (!group) {
-            var err = new Error("Invalid Group Id")
-            err.status = 400
-            throw err
-        }
-        if (validator.notNull(expense.expenseName) &&
-            validator.notNull(expense.expenseAmount) &&
-            validator.notNull(expense.expenseOwner) &&
-            validator.notNull(expense.expenseMembers) &&
-            validator.notNull(expense.expenseDate)) {
+try {
+    var expense = req.body;
+    var group = await model.Group.findOne({
+        _id: expense.groupId
+    })
+    if (!group) {
+        var err = new Error("Invalid Group Id")
+        err.status = 400
+        throw err
+    }
+        
+    // Security check: Ensure the authenticated user is a member of the group
+    if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+        var err = new Error('Access Denied: You are not a member of this group')
+        err.status = 403
+        throw err
+    }
+        
+    if (validator.notNull(expense.expenseName) &&
+        validator.notNull(expense.expenseAmount) &&
+        validator.notNull(expense.expenseOwner) &&
+        validator.notNull(expense.expenseMembers) &&
+        validator.notNull(expense.expenseDate)) {
             var ownerValidation = await validator.groupUserValidation(expense.expenseOwner, expense.groupId)
             if (!ownerValidation) {
                 var err = new Error("Please provide a valid group owner")
@@ -78,24 +86,31 @@ Accepts: Group ID not null group ID exist in the DB
          Expense Members not null members in the DB
 */
 exports.editExpense = async (req, res) => {
-    try {
-        var expense = req.body
-        var oldExpense = await model.Expense.findOne({
-            _id: expense.id
-        })
-        if (!oldExpense || expense.id == null ||
-            oldExpense.groupId != expense.groupId
-        ) {
-            var err = new Error("Invalid Expense Id")
-            err.status = 400
-            throw err
-        }
+try {
+    var expense = req.body
+    var oldExpense = await model.Expense.findOne({
+        _id: expense.id
+    })
+    if (!oldExpense || expense.id == null ||
+        oldExpense.groupId != expense.groupId
+    ) {
+        var err = new Error("Invalid Expense Id")
+        err.status = 400
+        throw err
+    }
+        
+    // Security check: Ensure the authenticated user is a member of the expense
+    if (req.user && !oldExpense.expenseMembers.includes(req.user.emailId)) {
+        var err = new Error('Access Denied: You are not a member of this expense')
+        err.status = 403
+        throw err
+    }
 
-        if (validator.notNull(expense.expenseName) &&
-            validator.notNull(expense.expenseAmount) &&
-            validator.notNull(expense.expenseOwner) &&
-            validator.notNull(expense.expenseMembers)&& 
-            validator.notNull(expense.expenseDate)) {
+    if (validator.notNull(expense.expenseName) &&
+        validator.notNull(expense.expenseAmount) &&
+        validator.notNull(expense.expenseOwner) &&
+        validator.notNull(expense.expenseMembers)&& 
+        validator.notNull(expense.expenseDate)) {
             var ownerValidation = await validator.groupUserValidation(expense.expenseOwner, expense.groupId)
             if (!ownerValidation) {
                 var err = new Error("Please provide a valid group owner")
@@ -153,18 +168,26 @@ Accepts: Group ID not null group ID exist in the DB
          Expense ID not null expense ID exist in the DB for the perticular group
 */
 exports.deleteExpense = async (req, res) => {
-    try {
-        var expense = await model.Expense.findOne({
-            _id: req.body.id
-        })
-        if (!expense) {
-            var err = new Error("Invalid Expense Id")
-            err.status = 400
-            throw err
-        }
-        var deleteExp = await model.Expense.deleteOne({
-            _id: req.body.id
-        })
+try {
+    var expense = await model.Expense.findOne({
+        _id: req.body.id
+    })
+    if (!expense) {
+        var err = new Error("Invalid Expense Id")
+        err.status = 400
+        throw err
+    }
+        
+    // Security check: Ensure the authenticated user is a member of the expense
+    if (req.user && !expense.expenseMembers.includes(req.user.emailId)) {
+        var err = new Error('Access Denied: You are not a member of this expense')
+        err.status = 403
+        throw err
+    }
+        
+    var deleteExp = await model.Expense.deleteOne({
+        _id: req.body.id
+    })
 
         //Clearing split value for the deleted expense from group table
         await gorupDAO.clearSplit(expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers)
@@ -200,6 +223,14 @@ exports.viewExpense = async (req, res) => {
             err.status = 400
             throw err
         }
+        
+        // Security check: Ensure the authenticated user is a member of the expense
+        if (req.user && !expense.expenseMembers.includes(req.user.emailId)) {
+            var err = new Error("Access Denied: You are not a member of this expense")
+            err.status = 403
+            throw err
+        }
+        
         res.status(200).json({
             status: "Success",
             expense: expense
@@ -220,6 +251,23 @@ Returns: Json with all the expense record and the total expense amount for the g
 */
 exports.viewGroupExpense = async (req, res) => {
     try {
+        // First, verify the group exists and user is a member
+        var group = await model.Group.findOne({
+            _id: req.body.id
+        })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+        
+        // Security check: Ensure the authenticated user is a member of the group
+        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+            var err = new Error("Access Denied: You are not a member of this group")
+            err.status = 403
+            throw err
+        }
+        
         var groupExpense = await model.Expense.find({
             groupId: req.body.id
         }).sort({
@@ -257,6 +305,14 @@ returns: Expenses
 exports.viewUserExpense = async (req, res) => {
     try {
         validator.notNull(req.body.user)
+        
+        // Security check: Ensure the authenticated user matches the requested user
+        if (req.user && req.user.emailId !== req.body.user) {
+            var err = new Error("Access Denied: You can only view your own expenses")
+            err.status = 403
+            throw err
+        }
+        
         var userExpense = await model.Expense.find({
             expenseMembers: req.body.user
         }).sort({
@@ -292,13 +348,20 @@ Accepts : user email id - check in db if user is present
 Returns : top 5 most resent expense user is a expenseMember in all the groups  
 */
 exports.recentUserExpenses = async (req, res) => {
-    try {
-        var recentExpense = await model.Expense.find({
-            expenseMembers: req.body.user
-        }).sort({
-            $natural: -1 //to get the newest first 
-        }).limit(5); //to get the top 5 
-        if (recentExpense.length == 0) {
+try {
+    // Security check: Ensure the authenticated user matches the requested user
+    if (req.user && req.user.emailId !== req.body.user) {
+        var err = new Error("Access Denied: You can only view your own expenses")
+        err.status = 403
+        throw err
+    }
+        
+    var recentExpense = await model.Expense.find({
+        expenseMembers: req.body.user
+    }).sort({
+        $natural: -1 //to get the newest first 
+    }).limit(5); //to get the top 5 
+    if (recentExpense.length == 0) {
             var err = new Error("No expense present for the user")
             err.status = 400
             throw err
@@ -324,6 +387,23 @@ Returns : Each category total exp (group as whole)
 */
 exports.groupCategoryExpense = async (req, res) => {
     try {
+        // First, verify the group exists and user is a member
+        var group = await model.Group.findOne({
+            _id: req.body.id
+        })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+        
+        // Security check: Ensure the authenticated user is a member of the group
+        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+            var err = new Error("Access Denied: You are not a member of this group")
+            err.status = 403
+            throw err
+        }
+        
         var categoryExpense = await model.Expense.aggregate([{
                 $match: {
                     groupId: req.body.id
@@ -360,6 +440,23 @@ Returns : Expense per month (current year)
 */
 exports.groupMonthlyExpense = async (req, res) => {
     try {
+        // First, verify the group exists and user is a member
+        var group = await model.Group.findOne({
+            _id: req.body.id
+        })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+        
+        // Security check: Ensure the authenticated user is a member of the group
+        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+            var err = new Error("Access Denied: You are not a member of this group")
+            err.status = 403
+            throw err
+        }
+        
         var monthlyExpense = await model.Expense.aggregate([{
                 $match: {
                     groupId: req.body.id
@@ -404,6 +501,23 @@ Returns : Expense per day (current year)
 */
 exports.groupDailyExpense = async (req, res) => {
     try {
+        // First, verify the group exists and user is a member
+        var group = await model.Group.findOne({
+            _id: req.body.id
+        })
+        if (!group) {
+            var err = new Error("Invalid Group Id")
+            err.status = 400
+            throw err
+        }
+        
+        // Security check: Ensure the authenticated user is a member of the group
+        if (req.user && !group.groupMembers.includes(req.user.emailId)) {
+            var err = new Error("Access Denied: You are not a member of this group")
+            err.status = 403
+            throw err
+        }
+        
         var dailyExpense = await model.Expense.aggregate([{
                 $match: { groupId: req.body.id,
                 expenseDate: {
@@ -454,6 +568,13 @@ Returns : Each category total exp (individaul Expense)
 */
 exports.userCategoryExpense = async (req, res) => {
     try {
+        // Security check: Ensure the authenticated user matches the requested user
+        if (req.user && req.user.emailId !== req.body.user) {
+            var err = new Error("Access Denied: You can only view your own expenses")
+            err.status = 403
+            throw err
+        }
+        
         var categoryExpense = await model.Expense.aggregate([{
                 $match: {
                     expenseMembers: req.body.user
@@ -490,6 +611,13 @@ Returns : Expense per month
 */
 exports.userMonthlyExpense = async (req, res) => {
     try {
+        // Security check: Ensure the authenticated user matches the requested user
+        if (req.user && req.user.emailId !== req.body.user) {
+            var err = new Error("Access Denied: You can only view your own expenses")
+            err.status = 403
+            throw err
+        }
+        
         var monthlyExpense = await model.Expense.aggregate([{
                 $match: {
                     expenseMembers: req.body.user
@@ -533,6 +661,13 @@ Returns : Expense per month
 */
 exports.userDailyExpense = async (req, res) => {
     try {
+        // Security check: Ensure the authenticated user matches the requested user
+        if (req.user && req.user.emailId !== req.body.user) {
+            var err = new Error("Access Denied: You can only view your own expenses")
+            err.status = 403
+            throw err
+        }
+        
         var dailyExpense = await model.Expense.aggregate([{
                 $match: {
                     expenseMembers: req.body.user,
