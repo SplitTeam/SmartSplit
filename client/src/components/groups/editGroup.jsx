@@ -3,13 +3,13 @@ import { Box, Button, Chip, Container, FormControl, FormHelperText, Grid, InputL
 import { Form, FormikProvider, useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
-import { getEmailList } from '../../services/auth';
+import { getUserList } from '../../services/auth';
 import Loading from '../loading';
 import useResponsive from '../../theme/hooks/useResponsive';
-import {  editGroupService, getGroupDetailsService } from '../../services/groupServices';
+import { editGroupService, getGroupDetailsService } from '../../services/groupServices';
 import AlertBanner from '../AlertBanner';
 import configData from '../../config.json'
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 export const EditGroup = () => {
@@ -19,7 +19,7 @@ export const EditGroup = () => {
     const profile = JSON.parse(localStorage.getItem('profile'))
     const currentUser = profile?.emailId
     const [loading, setLoading] = useState(false);
-    const [emailList, setEmailList] = useState([]);
+    const [userOptions, setUserOptions] = useState([]);
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
 
@@ -63,15 +63,11 @@ export const EditGroup = () => {
     };
 
 
-
-
     useEffect(() => {
         const getEmails = async () => {
             setLoading(true)
-            const response = await getEmailList()
-            var list = response.data.user
-            list.indexOf(currentUser) > -1 && list.splice(list.indexOf(currentUser), 1)
-            setEmailList(list)
+            const users = await getUserList()
+            setUserOptions(users || [])
             const groupIdJson = {
                 id: params.groupId
             }
@@ -139,19 +135,20 @@ export const EditGroup = () => {
                                             input={<OutlinedInput id="group-members" label="Group Members" />}
                                             renderValue={(selected) => (
                                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                                    {selected.map((value) => (
-                                                        <Chip key={value} label={value} />
-                                                    ))}
+                                                    {selected.map((value) => {
+                                                        const user = userOptions.find(user => user.emailId === value);
+                                                        return <Chip key={value} label={user?.name || value} />
+                                                    })}
                                                 </Box>
                                             )}
                                             MenuProps={MenuProps}
                                         >
-                                            {emailList.map((email) => (
+                                            {userOptions.map(user => (
                                                 <MenuItem
-                                                    key={email}
-                                                    value={email}
+                                                    key={user.emailId}
+                                                    value={user.emailId}
                                                 >
-                                                    {email}
+                                                    {user.name}
                                                 </MenuItem>
                                             ))}
                                         </Select>
