@@ -255,7 +255,7 @@ export default function AddExpense() {
                     {...getFieldProps('expenseType')}
                   >
                     <MenuItem value={'Cash'}>Cash</MenuItem>
-                    <MenuItem value={'UPI Payment'}>UPI Payment</MenuItem>
+                    <MenuItem value={'Revolut'}>Revolut</MenuItem>
                     <MenuItem value={'Card'}>Card</MenuItem>
                   </Select>
                   <FormHelperText>{touched.expenseType && errors.expenseType}</FormHelperText>
