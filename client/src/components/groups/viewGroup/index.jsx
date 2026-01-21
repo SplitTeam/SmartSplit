@@ -1,4 +1,4 @@
-﻿import { Box, Button, Container, Divider, Fab, Grid, Link, Stack, styled, Typography, Avatar } from '@mui/material';
+﻿import { Box, Button, Container, Divider, Fab, Grid, Link, Stack, styled, Typography, Avatar, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getGroupDetailsService, getGroupExpenseService } from '../../../services/groupServices';
@@ -6,7 +6,7 @@ import AlertBanner from '../../AlertBanner';
 import Iconify from '../../Iconify';
 import Loading from '../../loading';
 import useResponsive from '../../../theme/hooks/useResponsive';
-import { convertToCurrency, currencyFind, categoryIcon } from '../../../utils/helper';
+import { convertToCurrency, currencyFind, categoryIcon, formatTotalWithConversion } from '../../../utils/helper';
 import ExpenseCard from '../../expense/expenseCard';
 import GroupCategoryGraph from './groupCategoryGraph';
 import GroupMonthlyGraph from './groupMonthlyGraph';
@@ -259,10 +259,37 @@ export default function ViewGroup() {
                                             sx={{ color: (theme) => theme.palette['primary'].dark }}>
                                             Total expense
                                         </Typography>
-                                        <Typography variant="h5"
-                                            sx={{ color: (theme) => theme.palette['primary'].darker }}>
-                                            {currencyFind(group?.groupCurrency)} {groupExpense.total ? convertToCurrency(groupExpense.total) : 0}
-                                        </Typography>
+                                        {groupExpense.breakdown && Object.keys(groupExpense.breakdown).length > 1 ? (
+                                            <Tooltip 
+                                                title={formatTotalWithConversion(
+                                                    groupExpense.total || 0, 
+                                                    groupExpense.currency || group?.groupCurrency, 
+                                                    groupExpense.breakdown
+                                                ).tooltip}
+                                                arrow
+                                            >
+                                                <Typography variant="h5"
+                                                    sx={{ 
+                                                        color: (theme) => theme.palette['primary'].darker,
+                                                        cursor: 'help',
+                                                        borderBottom: '1px dotted',
+                                                        display: 'inline-block'
+                                                    }}>
+                                                    {currencyFind(groupExpense.currency || group?.groupCurrency)} {convertToCurrency(groupExpense.total || 0)}
+                                                </Typography>
+                                            </Tooltip>
+                                        ) : (
+                                            <Typography variant="h5"
+                                                sx={{ color: (theme) => theme.palette['primary'].darker }}>
+                                                {currencyFind(group?.groupCurrency)} {groupExpense.total ? convertToCurrency(groupExpense.total) : 0}
+                                            </Typography>
+                                        )}
+                                        {groupExpense.breakdown && Object.keys(groupExpense.breakdown).length > 1 && (
+                                            <Typography variant="caption" display="block" sx={{ mt: 0.5, color: 'text.secondary' }}>
+                                                <Iconify icon="mdi:currency-exchange" sx={{ width: 14, height: 14, mr: 0.5 }} />
+                                                Multi-currency (hover for details)
+                                            </Typography>
+                                        )}
                                     </Box>
                                 </Stack>
                             </Grid>

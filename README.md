@@ -66,9 +66,15 @@ Create a `.env` file in the backend directory (root directory) with the followin
 # It should look something like this: mongodb+srv://<username>:<password>@cluster.mongodb.net/?appName=Cluster
 MONGO_URI=""
 
+
 # Provide some random key in ACCESS_TOKEN_SECRET or you could generate one using node enter the below command in the terminal to genrate a random secret key 
 # node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
 ACCESS_TOKEN_SECRET=""
+
+
+# API Base URL for frontend to make API calls (e.g., http://localhost:3001)
+REACT_APP_BASE_URL=""
+
 
 # Server Port (optional, defaults to 3001)
 PORT=3001

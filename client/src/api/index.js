@@ -30,6 +30,8 @@ export const createGroup = (formData) => API.post('/api/group/v1/add', formData,
 
 export const editGroup = (formData) => API.post('/api/group/v1/edit', formData, accessHeader)
 
+export const deleteGroup = (formData) => API.delete('/api/group/v1/delete', {headers:accessHeader.headers,data:formData})
+
 export const getGroupDetails = (formData) => API.post('/api/group/v1/view', formData, accessHeader)
 
 export const getGroupExpense = (formData) => API.post('/api/expense/v1/group', formData, accessHeader)
